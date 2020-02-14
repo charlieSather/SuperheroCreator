@@ -17,17 +17,11 @@ namespace SuperheroCreatorProject.Controllers
         {
             _context = context;
         }
-        public IActionResult Index()
-        {
 
-            return View(_context.Superheroes);
-        }
+        public IActionResult Index() => View(_context.Superheroes);
 
-        public IActionResult Create()
-        {
-            
-            return View();
-        }
+        public IActionResult Create() => View();
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -49,32 +43,82 @@ namespace SuperheroCreatorProject.Controllers
             return View(superHero);
         }
 
-        [HttpGet]
+        //public IActionResult Details(int primaryKey) => _context.Superheroes.FirstOrDefault(x => x.Id == primaryKey) is null ?  View() : View();
         public IActionResult Details(int primaryKey)
         {
             var result = _context.Superheroes.FirstOrDefault(x => x.Id == primaryKey);
-
-            if (result is null)
+            if(result is null)
             {
                 return View();
             }
-
             return View(result);
+        }
+
+        
+        [HttpGet]
+        public IActionResult Delete(int primaryKey)
+        {
+            try
+            {
+                var result = _context.Superheroes.FirstOrDefault(x => x.Id == primaryKey);
+                if(result is null)
+                {
+                    return Redirect("Index");
+                }
+                return View(result);
+            }
+            catch
+            {
+                return Redirect("Index");
+            }
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Delete(int primaryKey)
+        public IActionResult Delete(Superhero superhero)
         {
+            try
+            {
+                _context.Superheroes.Remove(superhero);
+                _context.SaveChanges();
+            }
+            catch
+            {
+                return Redirect("Index");
+            }
 
-            return View();
+            return Redirect("Index");
+        }
+
+        public IActionResult Edit(int primaryKey)
+        {
+            var result = _context.Superheroes.FirstOrDefault(x => x.Id == primaryKey);
+            if(result is null)
+            {
+                return Redirect("Index");
+            }
+            return View(result);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Edit(Superhero superhero)
         {
-            return View();
+           
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    _context.Update(superhero);
+                    _context.SaveChanges();
+                }
+            }
+            catch
+            {
+                return View(superhero);
+
+            }
+            return Redirect("index");
         }
     }
 }
