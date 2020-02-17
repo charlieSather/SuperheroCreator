@@ -60,12 +60,19 @@ html {
 #actionsId{
     padding-left:4.25%;
 }
+#nameId {
+    padding-left: 4.25%;
+}
 
 body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
-    /*background-image: url("../css/Magneto.jpg");*/
+    /*background-image: url("Magneto.jpg");
+    background-size:100%;*/
 }
+
+
+
 .footer {
   position: absolute;
   bottom: 0;
