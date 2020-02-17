@@ -54,57 +54,39 @@ namespace SuperheroCreatorProject.Controllers
             return View(result);
         }
 
-        
         [HttpGet]
         public IActionResult Delete(int primaryKey)
         {
             try
             {
-                var result = _context.Superheroes.FirstOrDefault(x => x.Id == primaryKey);
-                if(result is null)
-                {
-                    return Redirect("Index");
-                }
-                return View(result);
-            }
-            catch
-            {
-                return Redirect("Index");
-            }
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Delete(Superhero superhero)
-        {
-            try
-            {
-                _context.Superheroes.Remove(superhero);
+                _context.Superheroes.Remove(_context.Superheroes.First(x => x.Id == primaryKey));
                 _context.SaveChanges();
             }
             catch
             {
-                return Redirect("Index");
+                return RedirectToAction("Index");
             }
 
-            return Redirect("Index");
+            return RedirectToAction("Index");
         }
 
+
+        [Route("Superhereos/Edit/{primaryKey:int}")]
         public IActionResult Edit(int primaryKey)
         {
             var result = _context.Superheroes.FirstOrDefault(x => x.Id == primaryKey);
             if(result is null)
             {
-                return Redirect("Index");
+                return RedirectToAction("Index");
             }
             return View(result);
         }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Edit(Superhero superhero)
         {
-           
             try
             {
                 if (ModelState.IsValid)

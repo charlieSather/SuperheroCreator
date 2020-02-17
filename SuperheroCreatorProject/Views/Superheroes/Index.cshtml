@@ -28,12 +28,12 @@
                 @Html.DisplayFor(modelItem => item.Id)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Name)
+                @Html.ActionLink($"{item.Name}", "Details", new { primaryKey = item.Id })
+
             </td>
             <td>
-                @*<a asp-controller="Superhereos" asp-action="Edit" asp-route-Id="@item.Id">Edit</a> |*@
-                @Html.ActionLink($"Edit", "Edit", new { primaryKey = item.Id }) |
-                @Html.ActionLink($"{item.Name}'s Details", "Details", new { primaryKey = item.Id}) |
+                <a asp-controller="Superhereos" asp-action="Edit" asp-route-Id="@item.Id">Edit</a> | 
+                @*@Html.ActionLink("Edit", "Edit", new { primaryKey = item.Id })*@
                 @Html.ActionLink("Delete", "Delete", new { primaryKey = item.Id })
             </td>
         </tr>
