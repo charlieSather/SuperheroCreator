@@ -9,23 +9,42 @@
 <h1>Add a superhero</h1>
 
 <form class="form-group" asp-action="Create">
-    <label></label>
-    <input />
+    <div class="form-text">
+        <label asp-for="Name"></label>
+    </div>
+    <div class="form-group">
+        <input asp-for="Name" />
+        <span asp-validation-for="Name"></span>
+    </div>
 
-    <label></label>
-    <input />
+    <div class="form-text">
+        <label asp-for="AlterEgo"></label>
+    </div>
+    <div class="form-group">
+        <input asp-for="AlterEgo" />
+    </div>
 
-    <label></label>
-    <input />
+    <div class="form-text">
+        <label asp-for="PrimaryAbility"></label>
+    </div>
+    <div class="form-group">
+        <input asp-for="PrimaryAbility" />
+        <span asp-validation-for="PrimaryAbility"></span>
+    </div>
 
-    <label></label>
-    <input />
+    <div class="form-text">
+        <label asp-for="SecondaryAbility"></label>
+    </div>
+    <div class="form-group">
+        <input asp-for="SecondaryAbility" />
+    </div>
 
-    <label></label>
-    <input />
-
-    <label></label>
-    <input />
-
+    <div class="form-text">
+        <label asp-for="Catchphrase"></label>
+    </div>
+    <div class="form-group">
+        <input asp-for="Catchphrase" />
+    </div>
+    <input type="submit" value="Add" class="btn btn-dark" />
 
 </form>

@@ -57,15 +57,14 @@ html {
   position: relative;
   min-height: 100%;
 }
-#ationList{
-    /*display:inline-block;
-    text-wrap: none;*/
+#actionsId{
+    padding-left:4.25%;
 }
 
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
-  /*background-image: url("../css/Magneto.jpg");*/
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+    /*background-image: url("../css/Magneto.jpg");*/
 }
 .footer {
   position: absolute;
