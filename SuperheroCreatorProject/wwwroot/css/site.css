@@ -57,11 +57,11 @@ html {
   position: relative;
   min-height: 100%;
 }
-#actionsId{
+/*#actionsId{
     padding-left:4.25%;
-}
+}*/
 #nameId {
-    padding-left: 4.25%;
+    /*padding-left: 4.25%;*/
 }
 
 body {

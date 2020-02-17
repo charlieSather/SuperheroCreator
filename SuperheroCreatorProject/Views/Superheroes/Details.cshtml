@@ -49,8 +49,10 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    @*<a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |*@
+    <button class="btn btn-outline-primary" onclick="location.href ='@Url.Action("Edit","Superheroes",new { id = Model.Id })';return false;">Edit</button>
+
+    <button class="btn btn-outline-primary" onclick="location.href ='@Url.Action("Index")';return false;">Back</button>
 </div>
 
 
