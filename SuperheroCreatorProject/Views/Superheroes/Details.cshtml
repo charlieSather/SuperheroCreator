@@ -1,10 +1,10 @@
 ﻿@model SuperheroCreatorProject.Models.Superhero
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = $"details";
 }
 
-<h1>Details</h1>
+    <h1>@Model.Name's details</h1>
 
 <div>
     <h4>Superhero</h4>
@@ -49,6 +49,6 @@
     </dl>
 </div>
 <div>
-    @Html.ActionLink("Edit", "Edit", new { primaryKey = Model.Id }) |
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>

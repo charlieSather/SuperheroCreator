@@ -57,6 +57,10 @@ html {
   position: relative;
   min-height: 100%;
 }
+#ationList{
+    /*display:inline-block;
+    text-wrap: none;*/
+}
 
 body {
   /* Margin bottom by footer height */

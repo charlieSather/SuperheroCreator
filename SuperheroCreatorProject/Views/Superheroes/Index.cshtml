@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<SuperheroCreatorProject.Models.Superhero>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Superheroes";
 }
 
-<h1>Index</h1>
+<h1>Superheroes</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -12,9 +12,6 @@
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Id)
-            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Name)
             </th>
@@ -25,16 +22,17 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Id)
+                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-link">@item.Name</a>
+                @*@Html.ActionLink($"{item.Name}", "Details", new { primaryKey = item.Id })*@
             </td>
-            <td>
-                @Html.ActionLink($"{item.Name}", "Details", new { primaryKey = item.Id })
-
-            </td>
-            <td>
-                <a asp-controller="Superhereos" asp-action="Edit" asp-route-Id="@item.Id">Edit</a> | 
-                @*@Html.ActionLink("Edit", "Edit", new { primaryKey = item.Id })*@
-                @Html.ActionLink("Delete", "Delete", new { primaryKey = item.Id })
+            <td id="actionList" class="form-inline">
+                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-link">Edit</a> |
+                @using (Html.BeginForm("Delete", "Superheroes", new { Id = item.Id }, FormMethod.Post, true, new { @class = "form-inline" }))
+                {
+                    <input type = "submit" value = "Delete" class="btn btn-link" />
+                }
+                @*<a asp-action="Delete" asp-route-id="@item.Id">Delete</a>*@
+                @* anchor tag's are always get requests and should handle deletions with post requests *@
             </td>
         </tr>
 }

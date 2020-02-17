@@ -44,9 +44,9 @@ namespace SuperheroCreatorProject.Controllers
         }
 
         //public IActionResult Details(int primaryKey) => _context.Superheroes.FirstOrDefault(x => x.Id == primaryKey) is null ?  View() : View();
-        public IActionResult Details(int primaryKey)
+        public IActionResult Details(int id)
         {
-            var result = _context.Superheroes.FirstOrDefault(x => x.Id == primaryKey);
+            var result = _context.Superheroes.FirstOrDefault(x => x.Id == id);
             if(result is null)
             {
                 return View();
@@ -54,27 +54,10 @@ namespace SuperheroCreatorProject.Controllers
             return View(result);
         }
 
-        [HttpGet]
-        public IActionResult Delete(int primaryKey)
+       // [Route("Superhereos/Edit/{primaryKey:int}")]
+        public IActionResult Edit(int id)
         {
-            try
-            {
-                _context.Superheroes.Remove(_context.Superheroes.First(x => x.Id == primaryKey));
-                _context.SaveChanges();
-            }
-            catch
-            {
-                return RedirectToAction("Index");
-            }
-
-            return RedirectToAction("Index");
-        }
-
-
-        [Route("Superhereos/Edit/{primaryKey:int}")]
-        public IActionResult Edit(int primaryKey)
-        {
-            var result = _context.Superheroes.FirstOrDefault(x => x.Id == primaryKey);
+            var result = _context.Superheroes.FirstOrDefault(x => x.Id == id);
             if(result is null)
             {
                 return RedirectToAction("Index");
@@ -94,6 +77,10 @@ namespace SuperheroCreatorProject.Controllers
                     _context.Update(superhero);
                     _context.SaveChanges();
                 }
+                else
+                {
+                    return View(superhero);
+                }
             }
             catch
             {
@@ -102,5 +89,23 @@ namespace SuperheroCreatorProject.Controllers
             }
             return Redirect("index");
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Delete(int Id)
+        {
+            try
+            {
+                _context.Superheroes.Remove(_context.Superheroes.First(x => x.Id == Id));
+                _context.SaveChanges();
+            }
+            catch
+            {
+                return RedirectToAction("Index");
+            }
+
+            return RedirectToAction("Index");
+        }
+
     }
 }
