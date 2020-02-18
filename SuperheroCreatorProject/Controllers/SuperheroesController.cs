@@ -43,7 +43,6 @@ namespace SuperheroCreatorProject.Controllers
             return View(superHero);
         }
 
-        //public IActionResult Details(int primaryKey) => _context.Superheroes.FirstOrDefault(x => x.Id == primaryKey) is null ?  View() : View();
         public IActionResult Details(int id)
         {
             var result = _context.Superheroes.FirstOrDefault(x => x.Id == id);
@@ -54,7 +53,7 @@ namespace SuperheroCreatorProject.Controllers
             return View(result);
         }
 
-       // [Route("Superhereos/Edit/{primaryKey:int}")]
+       // [Route("Superhereos/Edit/{id:int}")]
         public IActionResult Edit(int id)
         {
             var result = _context.Superheroes.FirstOrDefault(x => x.Id == id);
